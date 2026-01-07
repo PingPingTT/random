@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "93581572504",
+    "project_id": "random-9d33d",
+    "storage_bucket": "random-9d33d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93581572504:android:b199cf0b40ed66424953ed",
+        "android_client_info": {
+          "package_name": "com.example.dandom"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHrZtm-FvT8Oiwyfe9JjYKwPMiO0X-g14"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
