@@ -12,9 +12,14 @@ class _contactMeState extends State<contactMe> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Contact Me"),
+        title: Text("ติดต่อเรา"),
         centerTitle: true,
-        backgroundColor: Colors.green[300],
+        backgroundColor: const Color.fromARGB(255, 177, 199, 178),
+        titleTextStyle: TextStyle(
+          color: Colors.black,
+          fontSize: 22,
+          fontWeight: FontWeight.w800,
+      ),
       ),
 
       body: Padding(
@@ -25,13 +30,13 @@ class _contactMeState extends State<contactMe> {
               width: double.infinity,
               height: 60,
               decoration: BoxDecoration(
-                color: Colors.green[100],
-                borderRadius: BorderRadius.circular(40),
+                color: const Color.fromARGB(255, 95, 118, 97),
+                borderRadius: BorderRadius.circular(15),
               ),
               child: Center(
                 child: Text(
-                  "E-mail --------------------------",
-                  style: TextStyle(fontSize: 22),
+                  "E-mail : Sophonwit.sjw@gmail.com",
+                   style: TextStyle(fontSize: 22, color: Colors.white),
                 ),
               ),
             ),
@@ -42,13 +47,13 @@ class _contactMeState extends State<contactMe> {
               width: double.infinity,
               height: 60,
               decoration: BoxDecoration(
-                color: Colors.green[100],
-                borderRadius: BorderRadius.circular(40),
+                color: const Color.fromARGB(255, 95, 118, 97),
+                borderRadius: BorderRadius.circular(15),
               ),
               child: Center(
                 child: Text(
-                  "Phone --------------------------",
-                  style: TextStyle(fontSize: 22),
+                  "Phone : 0923140211",
+                  style: TextStyle(fontSize: 22, color: Colors.white),
                 ),
               ),
             ),

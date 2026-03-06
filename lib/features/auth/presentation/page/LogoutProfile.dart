@@ -1,5 +1,4 @@
-import 'package:dandom/presentation/page/Main_page%20/LoginSignUppage/SignUppage.dart';
-import 'package:dandom/presentation/page/Main_page%20/Profile_page/ContactMe.dart';
+import 'package:dandom/features/auth/presentation/page/login.dart';
 import 'package:flutter/material.dart';
 
 class LogOutProfile extends StatefulWidget {
@@ -14,18 +13,18 @@ class _LogOutProfileState extends State<LogOutProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: const Text("โปรไฟล์"),
         centerTitle: true,
-        backgroundColor: Colors.grey,
+        backgroundColor: const Color.fromARGB(255, 177, 199, 178),
         titleTextStyle: TextStyle(
-          color: Colors.white,
+          color: Colors.black,
           fontSize: 22,
-          fontWeight: FontWeight.w900,
+          fontWeight: FontWeight.w800,
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(25),
-        child:Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
@@ -46,26 +45,25 @@ class _LogOutProfileState extends State<LogOutProfile> {
               ],
             ),
             SizedBox(height: 30),
-    ListTile(
-              leading: const Icon(Icons.contact_mail),
-              title: const Text("ติดต่อเรา"),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const contactMe()),
-                );
-              },
-            ),
+            // ListTile(
+            //           leading: const Icon(Icons.contact_mail),
+            //           title: const Text("ติดต่อเรา"),
+            //           trailing: const Icon(Icons.chevron_right),
+            //           onTap: () {
+            //             Navigator.push(
+            //               context,
+            //               MaterialPageRoute(builder: (context) => const contactMe()),
+            //             );
+            //           },
+            //         ),
             ListTile(
               leading: const Icon(Icons.logout),
               title: const Text("เข้าสู่ระบบ"),
               trailing: const Icon(Icons.chevron_right),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.of(
                   context,
-                  MaterialPageRoute(builder: (context) => SignUpPage()),
-                );
+                ).push(MaterialPageRoute(builder: (_) => const LoginPage()));
               },
             ),
           ],

@@ -1,7 +1,7 @@
-import 'package:dandom/presentation/page/Main_page%20/LogoutProfile.dart';
-import 'package:dandom/presentation/page/Main_page%20/Profile_page/AddRestaurant.dart';
-import 'package:dandom/presentation/page/Main_page%20/Profile_page/ContactMe.dart';
-import 'package:dandom/presentation/page/Main_page%20/Profile_page/HistoryReview.dart';
+
+import 'package:dandom/features/auth/presentation/page/aboutprofile/AddRestaurant.dart';
+import 'package:dandom/features/auth/presentation/page/aboutprofile/ContactMe.dart';
+import 'package:dandom/features/auth/presentation/page/aboutprofile/HistoryReview.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -16,36 +16,17 @@ class _ProfileState extends State<Profile> {
   final auth = FirebaseAuth.instance;
 
   @override
-  void initState() {
-    super.initState();
-    _checkLogin();
-  }
-
-  void _checkLogin() {
-    final user = FirebaseAuth.instance.currentUser;
-
-    if (user == null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => LogOutProfile()),
-        );
-      });
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     final user = auth.currentUser;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: const Text("โปรไฟล์"),
         centerTitle: true,
-        backgroundColor: Colors.grey,
+        backgroundColor:  const Color.fromARGB(255, 177, 199, 178),
         titleTextStyle: TextStyle(
-          color: Colors.white,
+          color: Colors.black,
           fontSize: 22,
-          fontWeight: FontWeight.w900,
+          fontWeight: FontWeight.w800,
         ),
       ),
       body: Padding(
@@ -87,7 +68,6 @@ class _ProfileState extends State<Profile> {
                 );
               },
             ),
-
             ListTile(
               leading: const Icon(Icons.restaurant),
               title: const Text("เพิ่มร้านอาหาร"),
