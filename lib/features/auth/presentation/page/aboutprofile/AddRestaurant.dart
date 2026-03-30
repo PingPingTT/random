@@ -13,8 +13,32 @@ class _AddRestaurantState extends State<AddRestaurant> {
   final TextEditingController mallController = TextEditingController();
   final TextEditingController restaurantController = TextEditingController();
   final TextEditingController floorController = TextEditingController();
+  final TextEditingController searchController = TextEditingController();
 
+  List<String> mallSuggestions = [];
   List<String> selectedCategories = [];
+  List<String> allMalls = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadMalls();
+  }
+
+  Future<void> loadMalls() async {
+    final snapshot = await FirebaseFirestore.instance
+        .collection('restaurants')
+        .get();
+
+    final malls = snapshot.docs
+        .map((doc) => doc['mallName'] as String)
+        .toSet()
+        .toList();
+
+    setState(() {
+      allMalls = malls;
+    });
+  }
 
   final List<String> foodCategories = [
     "อาหารไทย",
@@ -100,7 +124,40 @@ class _AddRestaurantState extends State<AddRestaurant> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
+              onChanged: (value) {
+                setState(() {
+                  mallSuggestions = allMalls
+                      .where(
+                        (mall) =>
+                            mall.toLowerCase().contains(value.toLowerCase()),
+                      )
+                      .toList();
+                });
+              },
             ),
+             if (mallSuggestions.isNotEmpty && mallController.text.isNotEmpty)
+              Container(
+                height: 150,
+                margin: const EdgeInsets.only(top: 5),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  color: Colors.white,
+                ),
+                child: ListView.builder(
+                  itemCount: mallSuggestions.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(mallSuggestions[index]),
+                      onTap: () {
+                        setState(() {
+                          mallController.text = mallSuggestions[index];
+                          mallSuggestions.clear();
+                        });
+                      },
+                    );
+                  },
+                ),
+              ),
             const SizedBox(height: 25),
             TextField(
               controller: restaurantController,

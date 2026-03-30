@@ -51,7 +51,6 @@ class _HomePageState extends State<HomePage> {
         .collection('restaurants')
         .where('mallName', isEqualTo: mallName);
 
-    // ✅ ถ้าเลือกประเภท ให้กรองเพิ่ม
     if (selectedCategories.isNotEmpty) {
       query = query.where('categories', arrayContainsAny: selectedCategories);
     }
@@ -141,7 +140,6 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// 🔍 Search + Suggestion
             TextField(
               controller: searchController,
               decoration: InputDecoration(

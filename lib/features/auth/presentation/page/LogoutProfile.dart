@@ -1,3 +1,4 @@
+import 'package:dandom/features/auth/presentation/page/aboutprofile/ContactMe.dart';
 import 'package:dandom/features/auth/presentation/page/login.dart';
 import 'package:flutter/material.dart';
 
@@ -45,17 +46,17 @@ class _LogOutProfileState extends State<LogOutProfile> {
               ],
             ),
             SizedBox(height: 30),
-            // ListTile(
-            //           leading: const Icon(Icons.contact_mail),
-            //           title: const Text("ติดต่อเรา"),
-            //           trailing: const Icon(Icons.chevron_right),
-            //           onTap: () {
-            //             Navigator.push(
-            //               context,
-            //               MaterialPageRoute(builder: (context) => const contactMe()),
-            //             );
-            //           },
-            //         ),
+            ListTile(
+              leading: const Icon(Icons.contact_mail),
+              title: const Text("ติดต่อเรา"),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const contactMe()),
+                );
+              },
+            ),
             ListTile(
               leading: const Icon(Icons.logout),
               title: const Text("เข้าสู่ระบบ"),
