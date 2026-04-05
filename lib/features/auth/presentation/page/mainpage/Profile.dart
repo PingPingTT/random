@@ -1,4 +1,3 @@
-
 import 'package:dandom/features/auth/presentation/page/aboutprofile/AddRestaurant.dart';
 import 'package:dandom/features/auth/presentation/page/aboutprofile/ContactMe.dart';
 import 'package:dandom/features/auth/presentation/page/aboutprofile/HistoryReview.dart';
@@ -14,6 +13,11 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   final auth = FirebaseAuth.instance;
+  @override
+  void initState() {
+    super.initState();
+    FirebaseAuth.instance.currentUser?.reload();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class _ProfileState extends State<Profile> {
       appBar: AppBar(
         title: const Text("โปรไฟล์"),
         centerTitle: true,
-        backgroundColor:  const Color.fromARGB(255, 177, 199, 178),
+        backgroundColor: const Color.fromARGB(255, 177, 199, 178),
         titleTextStyle: TextStyle(
           color: Colors.black,
           fontSize: 22,
@@ -43,7 +47,7 @@ class _ProfileState extends State<Profile> {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  user?.email ?? "Guest",
+                  user?.displayName ?? "Guest",
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w300,

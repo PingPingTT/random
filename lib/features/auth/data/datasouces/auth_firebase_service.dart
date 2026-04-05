@@ -10,13 +10,12 @@ class AuthService {
     );
   }
 
-  Future<void> register(String email, String password) async {
-    await _auth.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-  }
-
+  Future<UserCredential> register(String email, String password) async {
+  return await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    email: email,
+    password: password,
+  );
+}
   Future<void> logout() async {
     await _auth.signOut();
   }

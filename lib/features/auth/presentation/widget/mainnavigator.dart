@@ -1,4 +1,4 @@
-import 'package:dandom/features/auth/presentation/page/LogoutProfile.dart';
+import 'package:dandom/features/auth/presentation/page/mainpage/LogoutProfile.dart';
 import 'package:dandom/features/auth/presentation/page/mainpage/Home_page.dart';
 import 'package:dandom/features/auth/presentation/page/mainpage/Profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
