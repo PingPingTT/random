@@ -1,5 +1,6 @@
 import 'package:dandom/features/auth/data/datasouces/auth_firebase_service.dart';
-import 'package:dandom/features/auth/presentation/page/sigup.dart';
+import 'package:dandom/features/auth/presentation/page/Signup/sigup.dart';
+import 'package:dandom/features/auth/presentation/page/Signup/Email_Verification.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -17,21 +18,45 @@ class _LoginPageState extends State<LoginPage> {
   String password = '';
   bool loading = false;
 
-  Future<void> _login() async {
-    _formKey.currentState!.save();
-    setState(() => loading = true);
+ Future<void> _login() async {
+  if (!_formKey.currentState!.validate()) return;
 
-    try {
-      await _auth.login(email, password);
+  _formKey.currentState!.save();
+  setState(() => loading = true);
+
+  try {
+    final userCredential = await _auth.login(email, password);
+
+    final user = userCredential.user;
+
+    // รีโหลดข้อมูลล่าสุด
+    await user!.reload();
+
+    if (user.emailVerified) {
+      // ✅ เข้าแอปได้
       Navigator.of(context).pop();
-    } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(e.toString())));
-    }
+    } else {
+      // ❌ ยังไม่ verify
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("กรุณายืนยันอีเมลก่อนเข้าสู่ระบบ")),
+      );
 
-    setState(() => loading = false);
+      // 👉 พาไปหน้า verify
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const VerifyEmailPage(),
+        ),
+      );
+    }
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(e.toString())),
+    );
   }
+
+  setState(() => loading = false);
+}
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,6 @@
 import 'package:dandom/features/auth/data/datasouces/auth_firebase_service.dart';
-import 'package:dandom/features/auth/presentation/page/login.dart';
-import 'package:dandom/features/auth/presentation/page/mainpage/Home_page.dart';
-import 'package:dandom/features/auth/presentation/widget/mainnavigator.dart';
+import 'package:dandom/features/auth/presentation/page/Login/login.dart';
+import 'package:dandom/features/auth/presentation/page/Signup/Email_Verification.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -23,36 +22,38 @@ class _SignUpPageState extends State<SignUpPage> {
   String confirmpassword = '';
   bool loading = false;
 
-  Future<void> _register() async {
-    if (!_formKey.currentState!.validate()) return;
+Future<void> _register() async {
+  if (!_formKey.currentState!.validate()) return;
 
-    _formKey.currentState!.save();
-    setState(() => loading = true);
+  _formKey.currentState!.save();
+  setState(() => loading = true);
 
-    try {
-      final userCredential = await _auth.register(email, password);
+  try {
+    final userCredential = await _auth.register(email, password);
 
-      // 👇 เพิ่มตรงนี้
-      await userCredential.user!.updateDisplayName(username);
-      await userCredential.user!.reload();
+    final user = userCredential.user;
 
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('สมัครสมาชิกสำเร็จ')));
-      
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (_) => const MainNavigation()),
-        (route) => false,
-      );
-    } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(e.toString())));
-    }
+    await user!.updateDisplayName(username);
+    await userCredential.user!.sendEmailVerification();
+    await user.reload();
 
-    setState(() => loading = false);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('สมัครสมาชิกสำเร็จ')),
+    );
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const VerifyEmailPage()),
+    );
+
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(e.toString())),
+    );
   }
+
+  setState(() => loading = false);
+}
 
   @override
   void dispose() {

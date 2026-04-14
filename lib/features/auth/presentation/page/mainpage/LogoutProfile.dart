@@ -1,5 +1,5 @@
-import 'package:dandom/features/auth/presentation/page/aboutprofile/ContactMe.dart';
-import 'package:dandom/features/auth/presentation/page/login.dart';
+import 'package:dandom/features/auth/presentation/page/mainpage/aboutprofile/ContactMe.dart';
+import 'package:dandom/features/auth/presentation/page/Login/login.dart';
 import 'package:flutter/material.dart';
 
 class LogOutProfile extends StatefulWidget {

@@ -1,6 +1,6 @@
-import 'package:dandom/features/auth/presentation/page/aboutprofile/AddRestaurant.dart';
-import 'package:dandom/features/auth/presentation/page/aboutprofile/ContactMe.dart';
-import 'package:dandom/features/auth/presentation/page/aboutprofile/HistoryReview.dart';
+import 'package:dandom/features/auth/presentation/page/mainpage/aboutprofile/AddRestaurant.dart';
+import 'package:dandom/features/auth/presentation/page/mainpage/aboutprofile/ContactMe.dart';
+import 'package:dandom/features/auth/presentation/page/mainpage/aboutprofile/HistoryReview.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
